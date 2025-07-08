@@ -8,8 +8,16 @@ def find_difference(numbers):
     Returns:
         the difference between the largest and smallest numbers
     """
-    return 0
-
+    if not isinstance(numbers, list):
+        raise TypeError("Input must be a list")
+    
+    if len(numbers) == 0:
+        raise ValueError("Input list cannot be empty")
+    
+    sorted_numbers = sorted(numbers)
+    if sorted_numbers:
+        return sorted_numbers[-1] - sorted_numbers[0]
+    
 
 if __name__ == '__main__':
     sample_list = [10, 3, 5, 6, 20, -2]
