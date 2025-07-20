@@ -6,7 +6,8 @@ def do_n_times(func, n):
         func: the function to execute
         n: the number of times to execute the function
     """
-    pass
+    for _ in range(n):
+        func()
 
 
 def say_hello():
