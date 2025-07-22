@@ -14,9 +14,6 @@ class TestIsUnique(unittest.TestCase):
     def test_empty_string(self):
         self.assertTrue(is_unique(""))
 
-    # def test_case_insensitive(self):
-    #     self.assertFalse(is_unique("Aa"))  # 'A' and 'a' same char ignoring case
-
     def test_special_chars(self):
         self.assertTrue(is_unique("!@#$%^&*()"))
         self.assertFalse(is_unique("!@#!!"))  # '!' repeats
