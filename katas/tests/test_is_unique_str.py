@@ -9,8 +9,6 @@ class TestIsUnique(unittest.TestCase):
         self.assertTrue(is_unique("World"))
         self.assertTrue(is_unique("Python"))
      
-      
-
     def test_empty_string(self):
         self.assertTrue(is_unique(""))
 
