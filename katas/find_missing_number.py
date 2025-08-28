@@ -9,7 +9,10 @@ def find_missing_number(numbers):
     Returns:
         the missing number
     """
-    return 0
+    n = len(numbers)
+    expected_sum = n * (n + 1) // 2  # Sum of first n natural numbers
+    actual_sum = sum(numbers)  # Sum of the given numbers
+    return expected_sum - actual_sum
 
 
 if __name__ == '__main__':

@@ -27,7 +27,25 @@ def parse_fastapi_log(log_line: str):
     Returns:
         Dictionary with parsed log components, or empty dict if invalid format
     """
-    return {}
+    log_pattern = re.compile(
+        r'INFO:\s+(\d+\.\d+\.\d+\.\d+):(\d+)\s+-\s+"(\w+)\s+([^"]+)\s+HTTP/(\d+\.\d+)"\s+(\d+)\s+(.*)'
+    )
+    
+    match = log_pattern.match(log_line)
+    if not match:
+        return {}
+    
+    client_ip, client_port, http_method, endpoint, http_version, status_code, status_text = match.groups()
+    
+    return {
+        "client_ip": client_ip,
+        "client_port": client_port,
+        "http_method": http_method,
+        "endpoint": endpoint,
+        "http_version": http_version,
+        "status_code": status_code,
+        "status_text": status_text
+    }
 
 
 if __name__ == "__main__":

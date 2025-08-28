@@ -1,5 +1,5 @@
 import re
-
+import socket
 
 def is_valid_email(email: str):
     """
@@ -21,7 +21,21 @@ def is_valid_email(email: str):
     Returns:
         True if the email is valid, False otherwise
     """
-    return False
+
+    pattern = re.compile(
+        r"^(?![._%+-])"                  # local part must not start with special chars
+        r"[a-zA-Z0-9._%+-]{1,64}"        # local part
+        r"(?<![._%+-])"                  # local part must not end with special chars
+        r"@"
+        r"(?!.*\.\.)"                    # no double dots in domain
+        r"[a-zA-Z0-9.-]{1,253}"          # domain part
+        r"\.[a-zA-Z]{2,}$"               # domain TLD
+    )
+    
+    return bool(email and pattern.match(email)) # returns True only if email is non-empty and the whole pattern matches.
+
+    
+  
 
 
 if __name__ == "__main__":

@@ -11,8 +11,23 @@ def is_anagram(s1, s2):
     Returns:
         True if the strings are anagrams, False otherwise
     """
-    return False
-
+    s1_cleaned = ''.join(s1.lower().split())
+    s2_cleaned = ''.join(s2.lower().split())
+    
+    if len(s1_cleaned) != len(s2_cleaned):
+        return False
+    
+    char_count = {}
+    
+    for char in s1_cleaned:
+        char_count[char] = char_count.get(char, 0) + 1
+    
+    for char in s2_cleaned:
+        if char not in char_count or char_count[char] == 0:
+            return False
+        char_count[char] -= 1
+    
+    return True
 
 if __name__ == '__main__':
     test1 = ("listen", "silent")
